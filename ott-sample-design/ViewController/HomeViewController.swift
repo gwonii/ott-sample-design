@@ -2,6 +2,12 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    private let headerView: HomeHeaderView = {
+        let headerView: HomeHeaderView = .init(frame: .zero)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     private let collectionView: UICollectionView = {
         let layout: UICollectionViewCompositionalLayout = {
             
@@ -26,6 +32,7 @@ final class HomeViewController: UIViewController {
         }()
         let collectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -38,13 +45,27 @@ final class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(HomeFeedCollectionViewCell.self, forCellWithReuseIdentifier: HomeFeedCollectionViewCell.identifer)
         collectionView.register(HomeFeedCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeFeedCollectionHeaderView.identifer)
+        view.addSubview(headerView)
         view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+//            headerView.heightAnchor.constraint(equalToConstant: 450),
+//            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+//            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//
+//            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: )
+        ])
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         collectionView.frame = view.bounds
+        headerView.frame = .init(x: view.bounds.minX, y: view.bounds.minY, width: view.bounds.width, height: 450)
     }
 }
 
