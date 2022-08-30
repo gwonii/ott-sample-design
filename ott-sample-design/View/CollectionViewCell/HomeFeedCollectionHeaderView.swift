@@ -14,8 +14,6 @@ final class HomeFeedCollectionHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-//        backgroundColor = .systemYellow
-        
         addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
